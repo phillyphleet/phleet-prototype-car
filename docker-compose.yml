@@ -2,21 +2,39 @@
 # Docker compose file for dockerized ROS Nodes for phleet car
 # Author: Alex Wroblewski
 #
-version: '1'
+version: '0.1'
 
 # Create a bridged network named 'ros'
+#
 networks:
   ros:
     driver: bridge
 
+# Define the services in the docker compose file.
+#
 services:
+  # Currently - the ROS Master is just the kinetic-ros-core.
+  # We may do something more fancy in the future.
+  #
   ros-master:
     image: ros:kinetic-ros-core
-    command: stdbuf -o L roscore
+    command: roscore
     networks:
       - ros
     restart: always
 
+  # Define the steering node.
+  #
+  steering:
+      image: philly-phleet/steering
+      command: ./entry
+      networks:
+        - ros
+      restart: always
+
+
+  # These talker and Listener nodes are used to verify the integrity of the composed network
+  #
   talker:
     image: ros:kinetic-ros-core
     depends_on:

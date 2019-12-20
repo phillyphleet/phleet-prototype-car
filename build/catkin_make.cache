@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/workdir/devel -DCMAKE_INSTALL_PREFIX=/workdir/install -G Unix Makefiles

@@ -1,2 +1,0 @@
-
--DCATKIN_DEVEL_PREFIX=/work/ros-packages/devel -DCMAKE_INSTALL_PREFIX=/work/ros-packages/install -G Unix Makefiles
