@@ -32,6 +32,16 @@ services:
         - ros
       restart: always
 
+  # Define the LIDAR NODE
+  #
+  lidar:
+      image: philly-phleet/lidar
+      command: ./entry
+      networks:
+        - ros
+      args:
+        - device=/dev/ttyUSB0
+      restart: always
 
   # These talker and Listener nodes are used to verify the integrity of the composed network
   #

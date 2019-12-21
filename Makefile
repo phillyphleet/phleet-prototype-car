@@ -28,6 +28,11 @@ ros_run:
 #
 steering:
 
+# Build the LIDAR Node
+#
+lidar:
+	sudo chmod 666 /dev/ttyUSB0
+
 
 
 # Clean Target
