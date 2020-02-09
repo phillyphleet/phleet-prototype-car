@@ -2,6 +2,9 @@
 # Makefile for phleet-prototype-car
 # Alex Wroblewski
 #
+
+# Get the current directory that we are in
+#
 current_dir ?= $(shell pwd)
 
 
@@ -13,27 +16,26 @@ all:
 ros_build:
 	# Build a container called phleet-build-container with the dockerfile in this directory
 	#
-	docker build -t philly-phleet/phleet-build-container:latest .
+	docker build -t philly-phleet/phleet-core:latest .
+
+lidar_build:
+	# Build a container for the RPlidar Node
+	#
 
 ros_run:
-
+	echo "Starting Phleet Core"
 	docker run -it \
-	--mount type=bind,source=$(current_dir),target=/workdir \
-	philly-phleet/phleet-build-container:latest \
-	/bin/bash
-
-
-
-# Steering Node
-#
-steering:
-
-# Build the LIDAR Node
-#
-lidar:
-	sudo chmod 666 /dev/ttyUSB0
-
-
+			--mount type=bind,source=$(current_dir),target=/workdir \
+			philly-phleet/phleet-core:latest \
+			/bin/bash 
+	if [[ "$OSTYPE" == "linux-gnu" ]]; then
+		docker run -it \
+			--mount type=bind,source=$(current_dir),target=/workdir \
+			philly-phleet/lidar:latest \
+			/bin/bash
+	else 
+		# Otherwise, do not pass in the LIDAR node
+	fi
 
 # Clean Target
 clean:

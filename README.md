@@ -1,15 +1,4 @@
-# phleet-prototype-car
-Philly Phleet Prototype Car
+# SRC
 
-src is the Catkin Workspace
-
-Dockerfile
-- Entrypoint for application
-
-
-Resources Used:
-
-Adafruit PCA-9685
-
-
+This is the source directory of the Phleet Prototype Car
 
