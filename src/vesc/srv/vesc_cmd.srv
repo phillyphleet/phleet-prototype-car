@@ -1,0 +1,11 @@
+# Request Type
+
+uint8 CMD_TYPE
+uint32 CMD_VALUE
+
+---
+# Response Type
+
+uint8 CMD_TYPE
+uint32 CMD_VALUE
+bool CMD_SUCCESS
